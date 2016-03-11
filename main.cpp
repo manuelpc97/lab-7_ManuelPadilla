@@ -25,7 +25,7 @@ int main(int argc, char*argv[]){
 	
 	while(seguir){
 		cout<<"------------------Menu-------------------"<<endl;
-		cout<<"1. Crear racionales. "<<endl;
+i		cout<<"1. Crear racionales. "<<endl;
 		cout<<"2. Sumar racionales. "<<endl;
 		cout<<"3. Restar reacionales. " <<endl;
 		cout<<"4. Multiplicar Racionales"<<endl;
@@ -35,7 +35,6 @@ int main(int argc, char*argv[]){
 		cin>>decision;
 
 		if(decision ==1){
-			while(denominador == 0){
 				cout<<"Ingrese el numerador: ";
 				cin>>numerador;
 				cout<<"Ingrese el denominador: ";
@@ -43,13 +42,14 @@ int main(int argc, char*argv[]){
 				
 				if(denominador == 0){
 					cout<<"ERROR! Su denominador no puede ser cero"<<endl;
-					cout<<"Ingrese todos los datos de nuevo "<<endl;
-				}else{
-					fraccion = racional(numerador,denominador);
-					racionales.push_back(fraccion);									
-				}		
-			}
-			denominador = 0;		
+					cout<<"aSu denominador sera 1"<<endl;
+					denominador = 1;
+				}
+
+				fraccion = racional(numerador,denominador);
+				racionales.push_back(fraccion);									
+						
+					
 		}else if(decision == 2){
 			cout<<"***************SUMA***********************"<<endl;
 			stringstream ss;
@@ -66,8 +66,8 @@ int main(int argc, char*argv[]){
 				cout << "Su segunda posicion no existe."<<endl;
 			}else{
 				fraccion = racionales[posicion1] + racionales[posicion2];
-				cout<<"La respuesta es: "<< fraccion.toString()<<endl;
-				ss<<racionales[posicion1].toString()<<" + "<<racionales[posicion2].toString()<< " = "<< fraccion.toString();
+				cout<<"La respuesta es: "<< fraccion<<endl;
+				ss<<racionales[posicion1]<<" + "<< racionales[posicion2] << " = "<< fraccion;
 				historial.push_back(ss.str());
 									
 			}
@@ -88,8 +88,8 @@ int main(int argc, char*argv[]){
                                 cout << "Su segunda posicion no existe."<<endl;
                         }else{
                                 fraccion = racionales[posicion1] - racionales[posicion2];
-                                cout<<"La respuesta es: "<< fraccion.toString()<<endl;
-                                ss<<racionales[posicion1].toString()<<" - "<<racionales[posicion2].toString()<< " = "<< fraccion.toString();
+                                cout<<"La respuesta es: "<< fraccion<<endl;
+                                ss<<racionales[posicion1]<<" - "<<racionales[posicion2]<< " = "<< fraccion;
                                 historial.push_back(ss.str());        
                         }
                        
@@ -109,8 +109,8 @@ int main(int argc, char*argv[]){
                                 cout << "Su segunda posicion no existe."<<endl;
                         }else{
                                 fraccion = racionales[posicion1] * racionales[posicion2];
-                                cout<<"La respuesta es: "<< fraccion.toString()<<endl;
-                                ss<<racionales[posicion1].toString()<<" * "<<racionales[posicion2].toString()<< " = "<< fraccion.toString();
+                                cout<<"La respuesta es: "<< fraccion<<endl;
+                                ss<<racionales[posicion1]<<" * "<<racionales[posicion2]<< " = "<< fraccion;
                                 historial.push_back(ss.str());
                         }
                         
@@ -131,8 +131,8 @@ int main(int argc, char*argv[]){
                                 cout << "Su segunda posicion no existe."<<endl;
                         }else{
                                 fraccion = racionales[posicion1] / racionales[posicion2];
-                                cout<<"La respuesta es: "<< fraccion.toString()<<endl;
-                                ss<<racionales[posicion1].toString()<<" / "<<racionales[posicion2].toString()<< " = "<< fraccion.toString();
+                                cout<<"La respuesta es: "<< fraccion<<endl;
+                                ss<<racionales[posicion1]<<" / "<<racionales[posicion2]<< " = "<< fraccion;
                                 historial.push_back(ss.str());
                         }
                        
@@ -150,7 +150,7 @@ int main(int argc, char*argv[]){
 
 void mostrarRacionales(vector<racional>& lista){
 	for(int i = 0; i < lista.size(); i++){
-		cout<<"Posicion: "<< i << " : "<<lista[i].toString()<<endl;
+		cout<<"Posicion: "<< i << " : "<<lista[i]<<endl;
 	}
 }
 

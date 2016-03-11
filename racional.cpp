@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <iostream>
 
+using std::ostream;
+using std::istream;
 using std::cout;
 using std::endl;
 using std::string;
@@ -31,17 +33,17 @@ const racional& racional::operator =(const racional& r){
 	return*this;
 }
                
-string racional::toString()const{
-	stringstream ss;
-	if(denominador == 1){
-		ss<<numerador;
-	}else if(numerador == 0){
-		ss<<"0";
-	}else if(numerador != denominador){
-		ss<<numerador<<"/"<<denominador;
+ostream& operator<<(ostream& output, const racional& rac){
+	if(rac.denominador == 1){
+		output<<rac.numerador;
+	}else if(rac.numerador == 0){
+		output<<"0";
+	}else if(rac.numerador != rac.denominador){
+		output<<rac.numerador<<"/"<<rac.denominador;
 	}
-	return ss.str();
+	return output;
 }
+
                 
 const double  racional::toDouble()const{
 	double retorno = numerador*1.0/denominador;
