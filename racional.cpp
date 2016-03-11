@@ -10,7 +10,10 @@ using std::string;
 using std::stringstream;
 
 racional::racional(int num, int den){
-	simplificar(num, den);
+	if(num != 0){
+		simplificar(num, den);
+	}
+	
 	if(den < 0){
                 den*=-1;
                 num*=-1;
