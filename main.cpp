@@ -30,8 +30,9 @@ int main(int argc, char*argv[]){
 		cout<<"3. Restar reacionales. " <<endl;
 		cout<<"4. Multiplicar Racionales"<<endl;
 		cout<<"5. Dividir racionales"<<endl;
-		cout<<"6. Mostar racionales"<<endl;
-		cout<<"7. Salir"<<endl;
+		cout<<"6. Mostar historial"<<endl;
+		cout<<"7. Mostrar Racionales"<<endl;
+		cout<<"8 para salir"<<endl;
 		cin>>decision;
 
 		if(decision ==1){
@@ -60,14 +61,14 @@ int main(int argc, char*argv[]){
 			cout<<"Ingrese la posicion de su segunda fraccion: ";
 			cin>>posicion2;
 
-			if(posicion1 < 0 || posicion1 >= racionales.size()){
+			if(posicion1 <= 0 || posicion1 > racionales.size()){
 				cout<<"Su primera posicion no existe. "<<endl;
-			}else if(posicion2 < 0 || posicion2 >= racionales.size()){
+			}else if(posicion2 <= 0 || posicion2 > racionales.size()){
 				cout << "Su segunda posicion no existe."<<endl;
 			}else{
-				fraccion = racionales[posicion1] + racionales[posicion2];
+				fraccion = racionales[posicion1-1] + racionales[posicion2-1];
 				cout<<"La respuesta es: "<< fraccion<<endl;
-				ss<<racionales[posicion1]<<" + "<< racionales[posicion2] << " = "<< fraccion;
+				ss<<racionales[posicion1-1]<<" + "<< racionales[posicion2-1] << " = "<< fraccion;
 				historial.push_back(ss.str());
 									
 			}
@@ -82,14 +83,14 @@ int main(int argc, char*argv[]){
                         cout<<"Ingrese la posicion de su segunda fraccion: ";
                         cin>>posicion2;
 
-                        if(posicion1 < 0 || posicion1 >= racionales.size()){
+                        if(posicion1 <= 0 || posicion1 > racionales.size()){
                                 cout<<"Su primera posicion no existe. "<<endl;
-                        }else if(posicion2 < 0 || posicion2 >= racionales.size()){
+                        }else if(posicion2 <= 0 || posicion2 > racionales.size()){
                                 cout << "Su segunda posicion no existe."<<endl;
                         }else{
-                                fraccion = racionales[posicion1] - racionales[posicion2];
+                                fraccion = racionales[posicion1-1] - racionales[posicion2-1];
                                 cout<<"La respuesta es: "<< fraccion<<endl;
-                                ss<<racionales[posicion1]<<" - "<<racionales[posicion2]<< " = "<< fraccion;
+                                ss<<racionales[posicion1-1]<<" - "<<racionales[posicion2-1]<< " = "<< fraccion;
                                 historial.push_back(ss.str());        
                         }
                        
@@ -103,14 +104,14 @@ int main(int argc, char*argv[]){
                         cout<<"Ingrese la posicion de su segunda fraccion: ";
                         cin>>posicion2;
 
-                        if(posicion1 < 0 || posicion1 >= racionales.size()){
+                        if(posicion1 <= 0 || posicion1 > racionales.size()){
                                 cout<<"Su primera posicion no existe. "<<endl;
-                        }else if(posicion2 < 0 || posicion2 >= racionales.size()){
+                        }else if(posicion2 <= 0 || posicion2 > racionales.size()){
                                 cout << "Su segunda posicion no existe."<<endl;
                         }else{
-                                fraccion = racionales[posicion1] * racionales[posicion2];
+                                fraccion = racionales[posicion1-1] * racionales[posicion2-1];
                                 cout<<"La respuesta es: "<< fraccion<<endl;
-                                ss<<racionales[posicion1]<<" * "<<racionales[posicion2]<< " = "<< fraccion;
+                                ss<<racionales[posicion1-1]<<" * "<<racionales[posicion2-1]<< " = "<< fraccion;
                                 historial.push_back(ss.str());
                         }
                         
@@ -125,15 +126,19 @@ int main(int argc, char*argv[]){
                         cout<<"Ingrese la posicion de su segunda fraccion: ";
                         cin>>posicion2;
 
-                        if(posicion1 < 0 || posicion1 >= racionales.size()){
+                        if(posicion1 <= 0 || posicion1 > racionales.size()){
                                 cout<<"Su primera posicion no existe. "<<endl;
-                        }else if(posicion2 < 0 || posicion2 >= racionales.size()){
+                        }else if(posicion2 <= 0 || posicion2 > racionales.size()){
                                 cout << "Su segunda posicion no existe."<<endl;
                         }else{
-                                fraccion = racionales[posicion1] / racionales[posicion2];
-                                cout<<"La respuesta es: "<< fraccion<<endl;
-                                ss<<racionales[posicion1]<<" / "<<racionales[posicion2]<< " = "<< fraccion;
-                                historial.push_back(ss.str());
+				if((racionales[posicion2-1] != 0)){
+                                	fraccion = racionales[posicion1-1] / racionales[posicion2-1];
+                                	cout<<"La respuesta es: "<< fraccion<<endl;
+                                	ss<<racionales[posicion1-1]<<" / "<<racionales[posicion2-1]<< " = "<< fraccion;
+                                	historial.push_back(ss.str());
+				}else{
+					cout<<"No se puede hacer una division entre cero"<<endl;
+				}
                         }
                        
 			
@@ -141,7 +146,12 @@ int main(int argc, char*argv[]){
 			cout<<"********************HISTORIAL*************************"<<endl;
 			mostrarHistorial(historial);
 		}else if(decision == 7){
+			cout<<"*****************RACIONALES**********"<<endl;
+			mostrarRacionales(racionales);
+		}else if(decision == 8){
 			seguir = false;
+		}else{
+			cout<<"OPCION INCORRECTA"<<endl;
 		}
 	}
 		
@@ -150,7 +160,7 @@ int main(int argc, char*argv[]){
 
 void mostrarRacionales(vector<racional>& lista){
 	for(int i = 0; i < lista.size(); i++){
-		cout<<"Posicion: "<< i << " : "<<lista[i]<<endl;
+		cout<< i + 1<<". "<<lista[i]<<endl;
 	}
 }
 

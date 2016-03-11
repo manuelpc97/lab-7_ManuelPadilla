@@ -18,6 +18,7 @@ class racional{
 		const racional operator -(const racional&);
 		const racional& operator =(const racional&);
 		const racional operator *(const racional&);
+		bool operator!=(int);
 		const racional operator /(const racional&);
 		void simplificar(int&, int&);
 		bool isPrime(int);

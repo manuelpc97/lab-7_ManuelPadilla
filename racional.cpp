@@ -12,21 +12,26 @@ using std::string;
 using std::stringstream;
 
 racional::racional(int num, int den){
-	if(num != 0){
-		simplificar(num, den);
-	}
 	
 	if(den < 0){
                 den*=-1;
                 num*=-1;
-        }else if(den==0){
-                throw "Math error";
         }
+	if(num!=0){
+		simplificar(num,den);
+	}
 
 	numerador = num;
 	denominador = den;
 }
 
+bool racional::operator!=(int num){
+	if((numerador!=0)){
+		return true;
+	}else{
+		return false;
+	}
+}
 const racional& racional::operator =(const racional& r){
 	numerador = r.numerador;
 	denominador = r.denominador;
@@ -51,30 +56,52 @@ const double  racional::toDouble()const{
 }
                 
 const racional racional::operator +(const racional& r){
+	int num, den;
 	if(denominador == r.denominador){
-		return racional(r.numerador + numerador, denominador);
+		num = r.numerador + numerador;
+		den = denominador;
+//		simplificar(num,den);
+		return racional(num, den);
 	}else{
-		return racional((r.numerador * denominador) + (numerador * r.denominador), denominador*r.denominador);
+		num = (r.numerador * denominador) + (numerador * r.denominador);
+		den = denominador*r.denominador;
+//		simplificar(num, den);
+		return racional(num, den);
 	}
 }
                 
                 
                 
 const racional racional::operator -(const racional& r){
+	int num, den;
 	if(denominador == r.denominador){
-		return racional(numerador - r.numerador,denominador); 
+		num = numerador - r.numerador;
+		den = denominador;
+//		simplificar(num,den);
+		return racional(num,den); 
 	}else{
-		return racional((numerador * r.denominador) - (r.numerador*denominador), denominador*r.denominador);
+		num = (numerador * r.denominador) - (r.numerador*denominador);
+		den = denominador*r.denominador;
+//		simplificar(num,den);
+		return racional(num, den);
 	}
 }
                 
 
 const racional racional::operator *(const racional& r){
-	return racional(numerador*r.numerador, denominador * r.denominador);
+	int num, den;
+	num = numerador * r.numerador;
+	den = denominador * r.denominador;
+//	simplificar(num,den);
+	return racional(num, den);
 }
 
 const racional racional::operator /(const racional& r){
-	return racional(numerador * r.denominador, denominador*r.numerador);
+	int num, den;
+	num = numerador * r.denominador;
+	den = denominador * r.numerador;
+//	simplificar(num,den);
+	return racional(num, den);
 }
  
                
@@ -88,23 +115,33 @@ void racional::simplificar(int& num, int& den){
 		den = den/num;
 		num = 1;
 	}else{
-		for(int i = num-1; i >1; i--){
-			
-				if(num % i == 0 && den % i == 0){
-					num = num / i;
+		int num2;
+		if(num < 0){
+			num2 = num *-1;
+		}else{
+			num2 = num;
+		}			
+		for(int i = num2-1; i >1; i--){
+				if(num2 % i == 0 && den % i == 0){
+					num2 = num2 / i;
 					den = den / i;
 					i++;
 				}	
-			
 			}
+			if(num < 0){
+				num2*=-1;
+				num = num2;
+			}else{
+				num = num2;
+			}
+				
 		}
 	}else if(den <num){
 		if(num%den == 0){
 			num = num/den;
 			den = 1;
 		}else{
-			for(int i = den-1; i >1; i--){
-                        
+			for(int i = den-1; i >1; i--){  
                                 if(num % i == 0 && den % i == 0){
                                         num = num / i;
                                         den = den / i;
