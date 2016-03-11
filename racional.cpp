@@ -22,7 +22,7 @@ racional::racional(int num, int den){
 	denominador = den;
 }
 
-const racional& racional::assign(const racional& r){
+const racional& racional::operator =(const racional& r){
 	numerador = r.numerador;
 	denominador = r.denominador;
 	return*this;
@@ -45,7 +45,7 @@ const double  racional::toDouble()const{
 	return (retorno);
 }
                 
-const racional racional::suma(const racional& r){
+const racional racional::operator +(const racional& r){
 	if(denominador == r.denominador){
 		return racional(r.numerador + numerador, denominador);
 	}else{
@@ -53,22 +53,9 @@ const racional racional::suma(const racional& r){
 	}
 }
                 
-const racional& racional::add(const racional& r){
-	if(denominador == r.denominador){
-		numerador+=r.numerador;
-	}else{
-		numerador*=r.denominador;
-		numerador+=(r.numerador*denominador);
-		denominador*=r.denominador;	
-	}
-	return *this;
-}
                 
-const racional racional::minus()const{
-	return racional(-numerador,denominador);
-}
                 
-const racional racional::resta(const racional& r){
+const racional racional::operator -(const racional& r){
 	if(denominador == r.denominador){
 		return racional(numerador - r.numerador,denominador); 
 	}else{
@@ -76,36 +63,13 @@ const racional racional::resta(const racional& r){
 	}
 }
                 
-const racional& racional::sub(const racional& r){
-	if(denominador == r.denominador){
-                numerador-=r.numerador;
-        }else{
-                numerador*=r.denominador;
-                numerador-=(r.numerador*denominador);
-                denominador*=r.denominador;
-        }
-        return *this;
 
-}
-
-const racional racional::multi(const racional& r){
+const racional racional::operator *(const racional& r){
 	return racional(numerador*r.numerador, denominador * r.denominador);
 }
 
-const racional& racional::product(const racional& r){
-	numerador*=r.denominador;
-	denominador*=r.denominador;
-	return *this;
-}
-
-const racional racional::division(const racional& r){
+const racional racional::operator /(const racional& r){
 	return racional(numerador * r.denominador, denominador*r.numerador);
-}
-
-const racional& racional::cociente(const racional& r){
-	numerador*=r.denominador;
-	denominador*=r.numerador;	
-	return *this;
 }
  
                
