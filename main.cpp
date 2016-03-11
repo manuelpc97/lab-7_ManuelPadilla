@@ -25,7 +25,7 @@ int main(int argc, char*argv[]){
 	
 	while(seguir){
 		cout<<"------------------Menu-------------------"<<endl;
-i		cout<<"1. Crear racionales. "<<endl;
+		cout<<"1. Crear racionales. "<<endl;
 		cout<<"2. Sumar racionales. "<<endl;
 		cout<<"3. Restar reacionales. " <<endl;
 		cout<<"4. Multiplicar Racionales"<<endl;
