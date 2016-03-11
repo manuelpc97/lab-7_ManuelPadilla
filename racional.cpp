@@ -112,12 +112,18 @@ void racional::simplificar(int& num, int& den){
 	}else if(num < den){
 
 	if(den %num == 0){
-		den = den/num;
-		num = 1;
+		if(num>0){
+			den = den/num;
+			num = 1;
+		}else{
+			den = den/num;
+			num = -1;
+			den*=-1;
+		}
 	}else{
 		int num2;
 		if(num < 0){
-			num2 = num *-1;
+			num2 = num*-1;
 		}else{
 			num2 = num;
 		}			
@@ -129,8 +135,8 @@ void racional::simplificar(int& num, int& den){
 				}	
 			}
 			if(num < 0){
-				num2*=-1;
-				num = num2;
+				
+				num = num2*-1;
 			}else{
 				num = num2;
 			}
